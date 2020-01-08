@@ -164,14 +164,17 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
 
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
 
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
-        stats.reset()
-        stats.game_active = True
+    btn_сliked = play_button.rect.collidepoint(mouse_x, mouse_y)
 
-        aliens.empty()
-        bullets.empty()
+    if btn_сliked and not stats.game_active:
+            pygame.mouse.set_visible(False)
+            stats.reset()
+            stats.game_active = True
 
-        create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship()
+            aliens.empty()
+            bullets.empty()
+
+            create_fleet(ai_settings, screen, ship, aliens)
+            ship.center_ship()
 
 # Закончено 286 страниц
